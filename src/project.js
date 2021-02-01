@@ -1914,8 +1914,8 @@ window.__require = function e(t, n, o) {
                     this.UpdateScoreLabel(e), this.lerpCtrl && this.lerpNumFunc(this.passlevelYQ), this.levelPanel.children[1].getComponent(cc.Label).string = s.default.Instance.GetLevel().toString()
                 }, t.prototype.adsButtonFunc = function() {
                     if(b.default.Instance.targetFruit.name==='') return;
-                    b.default.Instance.targetFruit.destroy()
-                    b.default.Instance.createOneFruit(Math.floor(Math.random()*6))
+                    // b.default.Instance.targetFruit.destroy()
+                    // b.default.Instance.createOneFruit(Math.floor(Math.random()*6))
                 }, t.prototype.TestPasslevel = function() {
                     var e = this;
                     this.lerpCtrl = !0, this.nowYQ >= this.passlevelYQ && (this.levelPanel.children[2].runAction(cc.sequence(cc.delayTime(1.3), cc.callFunc(function() {
