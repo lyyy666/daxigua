@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>合成大西瓜</title>
+    <title>合成好大一个云</title>
 
     <!--http://www.html5rocks.com/en/mobile/mobifying/-->
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1" />
@@ -79,8 +79,9 @@
         <!-- </div> -->
     </div>
 
-    <div id="loadingImg" style="top:45%;width: 100%;position:absolute; ">
-        <img src="res/loading.gif" width="7%" height="7%" />
+    <div id="loadingImg" style="top:35%;width: 100%;position:absolute; left:25%">
+        <img id="loading_top" src="res/loading.png" width="50%" height="50%" />
+        <img id="loading_bot" src="res/loading.png" width="40%" height="40%" />
     </div>
 
 
@@ -107,11 +108,11 @@
             //        console.log("window.navigator.language",window.navigator.language);
 
             if (window.navigator.language == "zh-CN" || window.navigator.language == "zh-cn") {
-                document.title = "合成大西瓜";
+                document.title = "合成好大一个云";
             } else if (window.navigator.language == "zh-TW") {
-                document.title = "合成大西瓜";
+                document.title = "合成好大一个云";
             } else if (window.navigator.language == "zh-HK") {
-                document.title = "合成大西瓜";
+                document.title = "合成好大一个云";
             } else if (window.navigator.language == "ko-KR") {
                 document.title = "작은 놀이：큰 수박 을 합성 하 다";
             } else if (window.navigator.language == "ja-JP") {
@@ -124,6 +125,21 @@
 
 
         }
+        var load_sc = true
+        var loading_top = document.getElementById("loading_top");
+        var loading_bot = document.getElementById("loading_bot");
+        var loading = setInterval(function() {
+            if (load_sc) {
+                loading_top.style.display = "none"
+                loading_bot.style.display = "block"
+                load_sc = false
+            } else {
+                loading_top.style.display = "block"
+                loading_bot.style.display = "none"
+                load_sc = true
+            }
+            updateLabView(0.1);
+        }, 1 * 500)
 
         var loadintT = document.getElementById("loadingText");
         var loadintGif = document.getElementById("loadingImg")
@@ -131,7 +147,9 @@
             loadintGif.remove();
             loadintT.style.display = ""
             updateLabView(0.1);
-        }, 1 * 1000)
+            clearInterval(loading)
+
+        }, 1 * 2000)
 
         window.timer = null;
         window.tempSeconds = 1;
