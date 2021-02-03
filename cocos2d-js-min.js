@@ -6574,6 +6574,9 @@
             _loadSceneByUuid: function(t, e, i, n) {
                 console.time("LoadScene " + t), cc.AssetLibrary.loadAsset(t, (function(n, r) {
                     console.timeEnd("LoadScene " + t);
+                    clearInterval(window.cccc)
+                    var aa = document.getElementById("loadingImg");
+                    aa.remove();
                     var s = cc.director;
                     if (s._loadingScene = "", n) n = "Failed to load scene: " + n, cc.error(n);
                     else {

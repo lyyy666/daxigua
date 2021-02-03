@@ -69,7 +69,13 @@
         <div id="block-Box" style="display:block;width:100%;height:100%;"></div>
     </div>
 
-    <div id="loadingText" style="width:100%;display: none;text-align:center;position:absolute;top:45%;z-index:2;font-size:20px;color:#f99f0a">
+    <div id="loadingImg" style="top:37%;position:absolute;width:125px; left: 30%;z-index:10">
+        <img id="loading_top" src="res/loading.png" width="80%" height="80%" style="display: none;"/>
+        <img id="loading_bot" src="res/loading.png" width="100%" height="100%" style="display: none;"/>
+    </div>
+
+    <div id="loadingText" style="width:100%;display: none;text-align:center;position:absolute;top:55%;z-index:2;font-size:20px;color:#f99f0a">
+        
         loading......0%
     </div>
 
@@ -79,10 +85,7 @@
         <!-- </div> -->
     </div>
 
-    <div id="loadingImg" style="top:35%;width: 100%;position:absolute; left:25%">
-        <img id="loading_top" src="res/loading.png" width="50%" height="50%" />
-        <img id="loading_bot" src="res/loading.png" width="40%" height="40%" />
-    </div>
+    
 
 
 
@@ -125,31 +128,27 @@
 
 
         }
-        var load_sc = true
-        var loading_top = document.getElementById("loading_top");
-        var loading_bot = document.getElementById("loading_bot");
-        var loading = setInterval(function() {
-            if (load_sc) {
-                loading_top.style.display = "none"
-                loading_bot.style.display = "block"
-                load_sc = false
-            } else {
-                loading_top.style.display = "block"
-                loading_bot.style.display = "none"
-                load_sc = true
-            }
-            updateLabView(0.1);
-        }, 1 * 500)
 
+        window.cccc = null;
         var loadintT = document.getElementById("loadingText");
-        var loadintGif = document.getElementById("loadingImg")
         setTimeout(function() {
-            loadintGif.remove();
             loadintT.style.display = ""
-            updateLabView(0.1);
-            clearInterval(loading)
-
-        }, 1 * 2000)
+            var loading_top = document.getElementById("loading_top");
+            var loading_bot = document.getElementById("loading_bot");
+            cccc = setInterval(function() {
+                var time = (new Date()).getTime();
+                if (time % 1000 > 500) {
+                    loading_top.style.display = "none"
+                    loading_bot.style.display = "block"
+                    load_sc = false
+                } else {
+                    loading_top.style.display = "block"
+                    loading_bot.style.display = "none"
+                    load_sc = true
+                }
+                updateLabView(0.1);
+            }, 500)
+        }, 1 * 100)
 
         window.timer = null;
         window.tempSeconds = 1;
@@ -172,12 +171,14 @@
                 clearInterval(timer);
             }
             timer = setInterval(function() {
+
                 tempSeconds++;
                 actualTotal();
                 var loadintT = document.getElementById("loadingText")
                 if (!loadintT) {
                     return;
                 }
+                
                 loadintT.innerHTML = 'loading......' + parseInt(tempSeconds) + '%';
 
                 switch (tempSeconds) {
